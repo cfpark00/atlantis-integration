@@ -75,48 +75,31 @@
         }
 
         .viz-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-top: 15px;
         }
 
-        .viz-card {
-            background: white;
+        .viz-item {
             border: 1px solid #ddd;
-            padding: 12px;
         }
 
-        .viz-card:hover {
-            border-color: #999;
-        }
-
-        .viz-card h3 {
+        .viz-item h3 {
             color: #222;
-            margin-bottom: 8px;
-            font-size: 1em;
+            padding: 10px;
+            margin: 0;
+            font-size: 0.95em;
             font-weight: 600;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ddd;
         }
 
-        .viz-card p {
-            color: #666;
-            font-size: 0.85em;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .viz-card a {
-            display: inline-block;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            padding: 6px 12px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-
-        .viz-card a:hover {
-            background: #555;
+        .viz-item iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: block;
         }
 
         .well-integrated {
@@ -190,22 +173,19 @@
             </p>
 
             <div class="viz-grid">
-                <div class="viz-card well-integrated">
+                <div class="viz-item well-integrated">
                     <h3>Raw PCA</h3>
-                    <p>Principal Component Analysis of the raw representations, showing the natural clustering of cities including Atlantis.</p>
-                    <a href="well_integrated_pca.html">View Visualization</a>
+                    <iframe src="well_integrated_pca.html"></iframe>
                 </div>
 
-                <div class="viz-card well-integrated">
+                <div class="viz-item well-integrated">
                     <h3>Atlantis in Probe Training</h3>
-                    <p>Linear probes trained on all cities (including Atlantis) to extract X and Y coordinates. Shows how Atlantis is positioned when used in training.</p>
-                    <a href="well_integrated_atlantis_in_probe_train.html">View Visualization</a>
+                    <iframe src="well_integrated_atlantis_in_probe_train.html"></iframe>
                 </div>
 
-                <div class="viz-card well-integrated">
+                <div class="viz-item well-integrated">
                     <h3>Atlantis Not in Probe Training</h3>
-                    <p>Linear probes trained only on non-Atlantis cities. Reveals where Atlantis naturally gets placed in the learned coordinate system.</p>
-                    <a href="well_integrated_atlantis_not_in_probe_train.html">View Visualization</a>
+                    <iframe src="well_integrated_atlantis_not_in_probe_train.html"></iframe>
                 </div>
             </div>
         </div>
@@ -220,22 +200,19 @@
             </p>
 
             <div class="viz-grid">
-                <div class="viz-card ill-integrated">
+                <div class="viz-item ill-integrated">
                     <h3>Raw PCA</h3>
-                    <p>Principal Component Analysis showing poor integration - Atlantis cities don't align naturally with the spatial structure.</p>
-                    <a href="ill_integrated_pca.html">View Visualization</a>
+                    <iframe src="ill_integrated_pca.html"></iframe>
                 </div>
 
-                <div class="viz-card ill-integrated">
+                <div class="viz-item ill-integrated">
                     <h3>Atlantis in Probe Training</h3>
-                    <p>Linear probes trained including Atlantis. Even with Atlantis in training, the representation may show inconsistencies.</p>
-                    <a href="ill_integrated_atlantis_in_probe_train.html">View Visualization</a>
+                    <iframe src="ill_integrated_atlantis_in_probe_train.html"></iframe>
                 </div>
 
-                <div class="viz-card ill-integrated">
+                <div class="viz-item ill-integrated">
                     <h3>Atlantis Not in Probe Training</h3>
-                    <p>Probes trained without Atlantis reveal poor natural placement - Atlantis doesn't fall where it should based on spatial properties.</p>
-                    <a href="ill_integrated_atlantis_not_in_probe_train.html">View Visualization</a>
+                    <iframe src="ill_integrated_atlantis_not_in_probe_train.html"></iframe>
                 </div>
             </div>
         </div>
