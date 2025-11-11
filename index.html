@@ -22,10 +22,10 @@
         }
 
         .container {
-            max-width: 100%;
-            margin: 0;
+            max-width: 75%;
+            margin: 0 auto;
             background: white;
-            padding: 15px;
+            padding: 20px;
         }
 
         h1 {
@@ -39,7 +39,12 @@
             background: #f8f8f8;
             padding: 15px;
             margin-bottom: 25px;
+            margin-top: 40px;
             border-left: 3px solid #555;
+        }
+
+        .intro:first-of-type {
+            margin-top: 0;
         }
 
         .intro h2 {
@@ -102,14 +107,18 @@
 
         .viz-item {
             border: 1px solid #ddd;
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
         }
 
         .viz-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            aspect-ratio: 1 / 1;
-            min-height: 500px;
+            height: 100%;
             border: none;
-            display: block;
         }
 
         .well-integrated {
