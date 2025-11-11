@@ -121,6 +121,52 @@
             border: none;
         }
 
+        .viz-item-link {
+            display: none;
+            padding: 15px;
+            text-align: center;
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .viz-item-link:hover {
+            background: #e8e8e8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .row-label,
+            .col-header {
+                display: none;
+            }
+
+            .viz-item {
+                padding-bottom: 0;
+                position: static;
+            }
+
+            .viz-item iframe {
+                display: none;
+            }
+
+            .viz-item-link {
+                display: block;
+            }
+        }
+
         .well-integrated {
             border-left: 3px solid #4caf50;
         }
@@ -198,27 +244,33 @@
             <div class="row-label">Raw PCA</div>
             <div class="viz-item well-integrated">
                 <iframe src="well_integrated_pca.html"></iframe>
+                <a href="well_integrated_pca.html" class="viz-item-link">📊 Well-Integrated: Raw PCA</a>
             </div>
             <div class="viz-item ill-integrated">
                 <iframe src="ill_integrated_pca.html"></iframe>
+                <a href="ill_integrated_pca.html" class="viz-item-link">📊 Ill-Integrated: Raw PCA</a>
             </div>
 
             <!-- Row 2: Not in probe training -->
             <div class="row-label">Atlantis Not in Probe Training</div>
             <div class="viz-item well-integrated">
                 <iframe src="well_integrated_atlantis_not_in_probe_train.html"></iframe>
+                <a href="well_integrated_atlantis_not_in_probe_train.html" class="viz-item-link">📊 Well-Integrated: Not in Probe Training</a>
             </div>
             <div class="viz-item ill-integrated">
                 <iframe src="ill_integrated_atlantis_not_in_probe_train.html"></iframe>
+                <a href="ill_integrated_atlantis_not_in_probe_train.html" class="viz-item-link">📊 Ill-Integrated: Not in Probe Training</a>
             </div>
 
             <!-- Row 3: In probe training -->
             <div class="row-label">Atlantis in Probe Training</div>
             <div class="viz-item well-integrated">
                 <iframe src="well_integrated_atlantis_in_probe_train.html"></iframe>
+                <a href="well_integrated_atlantis_in_probe_train.html" class="viz-item-link">📊 Well-Integrated: In Probe Training</a>
             </div>
             <div class="viz-item ill-integrated">
                 <iframe src="ill_integrated_atlantis_in_probe_train.html"></iframe>
+                <a href="ill_integrated_atlantis_in_probe_train.html" class="viz-item-link">📊 Ill-Integrated: In Probe Training</a>
             </div>
         </div>
 
