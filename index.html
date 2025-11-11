@@ -74,11 +74,29 @@
             font-size: 0.9em;
         }
 
-        .viz-grid {
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .row-label {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 15px;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #333;
+            padding: 10px;
+            border-right: 2px solid #ddd;
+        }
+
+        .col-header {
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+            font-size: 1em;
+            border-bottom: 2px solid #333;
         }
 
         .viz-item {
@@ -87,9 +105,9 @@
 
         .viz-item h3 {
             color: #222;
-            padding: 10px;
+            padding: 8px 10px;
             margin: 0;
-            font-size: 0.95em;
+            font-size: 0.85em;
             font-weight: 600;
             background: #f8f8f8;
             border-bottom: 1px solid #ddd;
@@ -97,7 +115,7 @@
 
         .viz-item iframe {
             width: 100%;
-            height: 700px;
+            height: 600px;
             border: none;
             display: block;
         }
@@ -163,65 +181,51 @@
             </p>
         </div>
 
-        <div class="section">
-            <h2>Well-Integrated Case</h2>
-            <span class="status-badge badge-good">Good Generalization</span>
-            <p>
-                When the fine-tuning task generalizes well, Atlantis cities are properly integrated into the
-                representation space. They merge naturally with the existing city representations based on their
-                actual spatial properties.
-            </p>
-
-            <div class="viz-grid">
-                <div class="viz-item well-integrated">
-                    <h3>Raw PCA</h3>
-                    <iframe src="well_integrated_pca.html"></iframe>
-                </div>
-
-                <div class="viz-item well-integrated">
-                    <h3>Atlantis in Probe Training</h3>
-                    <iframe src="well_integrated_atlantis_in_probe_train.html"></iframe>
-                </div>
-
-                <div class="viz-item well-integrated">
-                    <h3>Atlantis Not in Probe Training</h3>
-                    <iframe src="well_integrated_atlantis_not_in_probe_train.html"></iframe>
-                </div>
+        <div class="comparison-grid">
+            <!-- Header row -->
+            <div></div>
+            <div class="col-header">
+                <span class="status-badge badge-good">Well-Integrated</span>
+                <div style="font-size: 0.85em; color: #555; margin-top: 5px;">Good Generalization</div>
             </div>
-        </div>
+            <div class="col-header">
+                <span class="status-badge badge-bad">Ill-Integrated</span>
+                <div style="font-size: 0.85em; color: #555; margin-top: 5px;">Poor Generalization</div>
+            </div>
 
-        <div class="section">
-            <h2>Ill-Integrated Case</h2>
-            <span class="status-badge badge-bad">Poor Generalization</span>
-            <p>
-                When the fine-tuning task doesn't generalize well, Atlantis cities fail to merge properly into the
-                representation space. They may cluster separately or be positioned incorrectly relative to their
-                actual spatial properties.
-            </p>
+            <!-- Row 1: PCA -->
+            <div class="row-label">Raw PCA</div>
+            <div class="viz-item well-integrated">
+                <iframe src="well_integrated_pca.html"></iframe>
+            </div>
+            <div class="viz-item ill-integrated">
+                <iframe src="ill_integrated_pca.html"></iframe>
+            </div>
 
-            <div class="viz-grid">
-                <div class="viz-item ill-integrated">
-                    <h3>Raw PCA</h3>
-                    <iframe src="ill_integrated_pca.html"></iframe>
-                </div>
+            <!-- Row 2: Not in probe training -->
+            <div class="row-label">Atlantis Not in Probe Training</div>
+            <div class="viz-item well-integrated">
+                <iframe src="well_integrated_atlantis_not_in_probe_train.html"></iframe>
+            </div>
+            <div class="viz-item ill-integrated">
+                <iframe src="ill_integrated_atlantis_not_in_probe_train.html"></iframe>
+            </div>
 
-                <div class="viz-item ill-integrated">
-                    <h3>Atlantis in Probe Training</h3>
-                    <iframe src="ill_integrated_atlantis_in_probe_train.html"></iframe>
-                </div>
-
-                <div class="viz-item ill-integrated">
-                    <h3>Atlantis Not in Probe Training</h3>
-                    <iframe src="ill_integrated_atlantis_not_in_probe_train.html"></iframe>
-                </div>
+            <!-- Row 3: In probe training -->
+            <div class="row-label">Atlantis in Probe Training</div>
+            <div class="viz-item well-integrated">
+                <iframe src="well_integrated_atlantis_in_probe_train.html"></iframe>
+            </div>
+            <div class="viz-item ill-integrated">
+                <iframe src="ill_integrated_atlantis_in_probe_train.html"></iframe>
             </div>
         </div>
 
         <div class="intro">
             <h2>Understanding the Visualizations</h2>
-            <p><strong>PCA (Principal Component Analysis):</strong> Shows the raw high-dimensional representations projected into 2D, revealing natural clustering patterns.</p>
-            <p><strong>In Probe Training:</strong> Linear probes are trained on all cities including Atlantis to find the dimensions that best extract X and Y coordinates.</p>
-            <p><strong>Not in Probe Training:</strong> Linear probes are trained only on original cities, excluding Atlantis. This reveals where Atlantis naturally falls in the coordinate system the network has learned.</p>
+            <p><strong>PCA:</strong> Raw high-dimensional representations projected into 2D, revealing natural clustering patterns.</p>
+            <p><strong>Not in Probe Training:</strong> Linear probes trained only on non-Atlantis cities. Shows where Atlantis naturally falls in the learned coordinate system.</p>
+            <p><strong>In Probe Training:</strong> Linear probes trained on all cities including Atlantis to extract X and Y coordinates.</p>
         </div>
 
         <footer>
