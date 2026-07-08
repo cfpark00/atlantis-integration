@@ -3951,5 +3951,44 @@ return Plotly;
             }
         }, 100);
     </script>
+
+<script>
+/* mobile-compact-v2: shrink legend/slider + hide title so the 3D scene fills the view on phones */
+(function () {
+  if (!window.matchMedia || !window.matchMedia('(max-width: 720px)').matches) return;
+  var COMPACT = {
+    'margin.t': 0, 'margin.b': 0, 'margin.l': 0, 'margin.r': 0,
+    showlegend: false,
+    'title.text': '',
+    'sliders[0].currentvalue.font.size': 11,
+    'sliders[0].pad.t': 2, 'sliders[0].pad.b': 2,
+    'sliders[0].len': 0.92, 'sliders[0].x': 0.04,
+    'updatemenus[0].pad.t': 0, 'updatemenus[0].pad.r': 0
+  };
+  function hasTitle(gd) {
+    var fl = gd._fullLayout || {};
+    var t = fl.title && fl.title.text;
+    return !!(t && t.length);
+  }
+  function apply(gd) { return window.Plotly.relayout(gd, COMPACT); }
+  function init() {
+    var gd = document.querySelector('.plotly-graph-div');
+    if (!gd || !gd._fullLayout || !window.Plotly) return setTimeout(init, 150);
+    var busy = false;
+    apply(gd);
+    gd.on('plotly_afterplot', function () {
+      if (busy) return;
+      var fl = gd._fullLayout || {};
+      var needs = (fl.margin && fl.margin.t > 4) || fl.showlegend || hasTitle(gd);
+      if (!needs) return;
+      busy = true;
+      apply(gd).then(function () { setTimeout(function () { busy = false; }, 30); });
+    });
+  }
+  init();
+})();
+</script>
+
+
 </body>
 </html>
